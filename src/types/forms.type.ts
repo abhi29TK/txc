@@ -1,12 +1,12 @@
 export type _Form = {
-    location: '',
-    role: '',
-    position: '',
-    function: '',
-    type: '',
-    sex: '',
-    products: '',
-    size: '',
-    credits: '',
-    organizations: ""
-  };
+  location: string;
+  role: string;
+  position: string;
+  functions: string[];
+  type: string;
+  sex: string;
+  products: string[];
+  size: string;
+  credits: string[];
+  organizations: string;
+};

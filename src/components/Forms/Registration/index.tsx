@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import * as yup from "yup";
 import {
   credits,
   functions,
@@ -24,23 +23,11 @@ import {
 } from "../../../constant/forms.constant";
 import { registrationInitials } from "../../../constant/initials.constant";
 import { _Form } from "../../../types/forms.type";
+import { MultipleSelectChip } from "../../inputs";
 
 type _Props = {
   setEntry: (details: _Form) => void;
 };
-
-const validationSchema = yup.object().shape({
-  location: yup.string(),
-  role: yup.string(),
-  position: yup.string(),
-  function: yup.string(),
-  type: yup.string(),
-  sex: yup.string(),
-  products: yup.string(),
-  size: yup.string(),
-  credits: yup.string(),
-  organizations: yup.string(),
-});
 
 const RegistrationForm: React.FC<_Props> = ({ setEntry }) => {
   const [registrationDetails] = useState(registrationInitials);
@@ -54,11 +41,7 @@ const RegistrationForm: React.FC<_Props> = ({ setEntry }) => {
       initialValues={registrationDetails}
       onSubmit={registrationSubmitHandler}
     >
-      {({ values, errors, handleChange }) => {
-        {
-          console.log("errors", errors);
-        }
-
+      {({ values, handleChange }) => {
         return (
           <Form>
             <Typography variant="h6" gutterBottom>
@@ -130,26 +113,13 @@ const RegistrationForm: React.FC<_Props> = ({ setEntry }) => {
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Function
-                  </InputLabel>
-                  <Select
-                    labelId="function"
-                    name="function"
-                    id="function"
-                    value={values.function}
-                    label="Function"
-                    onChange={handleChange}
-                  >
-                    {functions &&
-                      functions.map((func, index) => (
-                        <MenuItem key={index} value={func}>
-                          {func}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+                <MultipleSelectChip
+                  onChange={handleChange}
+                  inputValue={values.functions}
+                  options={functions}
+                  inputName={"functions"}
+                  label={"Functions"}
+                />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
@@ -192,26 +162,13 @@ const RegistrationForm: React.FC<_Props> = ({ setEntry }) => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Products
-                  </InputLabel>
-                  <Select
-                    labelId="product"
-                    name="products"
-                    id="product"
-                    value={values.products}
-                    label="Products"
-                    onChange={handleChange}
-                  >
-                    {products &&
-                      products.map((product, index) => (
-                        <MenuItem key={index} value={product}>
-                          {product}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+                <MultipleSelectChip
+                  onChange={handleChange}
+                  inputValue={values.products}
+                  options={products}
+                  inputName={"products"}
+                  label={"Products"}
+                />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
@@ -234,24 +191,13 @@ const RegistrationForm: React.FC<_Props> = ({ setEntry }) => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Credits</InputLabel>
-                  <Select
-                    labelId="credit"
-                    name="credits"
-                    id="credit"
-                    value={values.credits}
-                    label="Credits"
-                    onChange={handleChange}
-                  >
-                    {credits &&
-                      credits.map((credit, index) => (
-                        <MenuItem key={index} value={credit}>
-                          {credit}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+                <MultipleSelectChip
+                  onChange={handleChange}
+                  inputValue={values.credits}
+                  options={credits}
+                  inputName={"credits"}
+                  label={"Credits"}
+                />
               </Grid>{" "}
               <Grid item xs={12} sm={6}>
                 <FormControl fullWidth>
